@@ -145,7 +145,7 @@ def build_custom_fields(mapping: dict) -> list:
 
     1. Registry columns — CSV columns of the form:
          cf_<prefix>_value   e.g. cf_due_date_value = ${finding.resolutionDueDate}
-         cf_<prefix>_active  any non-blank value → active=true; blank → active=false
+                             active=true if value is present, active=false if blank
        Valid prefixes: parent, sprint, flagged, development, vulnerability,
                        design, story_points, rank, linked_issues, due_date
 
@@ -157,23 +157,17 @@ def build_custom_fields(mapping: dict) -> list:
 
     # Source 1: registry columns
     for prefix, meta in CUSTOM_FIELD_REGISTRY.items():
-        value_col  = f"cf_{prefix}_value"
-        active_col = f"cf_{prefix}_active"
-        value  = mapping.get(value_col, "").strip()
-        active_raw = mapping.get(active_col, "").strip().lower()
-
-        # Include if a value is set; active=true only if active column is non-blank
-        if value:
-            active = bool(active_raw)
-            fields.append({
-                "key":      meta["key"],
-                "name":     meta["name"],
-                "type":     meta["type"],
-                "dataType": meta["dataType"],
-                "defaultVal": value,
-                "value":    None,
-                "active":   active,
-            })
+        value = mapping.get(f"cf_{prefix}_value", "").strip()
+        active = bool(value)
+        fields.append({
+            "key":      meta["key"],
+            "name":     meta["name"],
+            "type":     meta["type"],
+            "dataType": meta["dataType"],
+            "defaultVal": value or None,
+            "value":    None,
+            "active":   active,
+        })
 
     # Source 2: raw JSON column (for anything not in the registry)
     raw_json = mapping.get("customFields", "").strip()
@@ -468,3 +462,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
