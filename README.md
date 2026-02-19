@@ -32,28 +32,28 @@ ARMORCODE_TOKEN=your-token python3 add_jira_mappings.py --integration-name "My J
 
 ### 1. Edit `mappings.csv`
 
-Each row is one Jira mapping. The only **required** column is `projectKey`.
+Each row is one Jira mapping. The only **required** columns are `projectKey` and `issueType`.
 
 | Column | Required | Notes |
 |---|---|---|
 | `projectKey` | **Yes** | Jira project key (e.g. `PROJ`) |
 | `projectId` | No | Jira numeric project ID |
-| `issueType` | No | e.g. `Bug`, `Story`, `Task` |
+| `issueType` | **Yes** | e.g. `Bug`, `Story`, `Task` |
 | `issueTypeId` | No | Jira numeric issue type ID |
 | `product` | No | ArmorCode product IDs, comma-separated |
 | `subProduct` | No | ArmorCode sub-product IDs, comma-separated |
-| `group` | No | ArmorCode group IDs, comma-separated |
-| `subGroup` | No | ArmorCode sub-group IDs, comma-separated |
-| `cf_parent_value` / `cf_parent_active` | No | Parent |
-| `cf_sprint_value` / `cf_sprint_active` | No | Sprint |
-| `cf_flagged_value` / `cf_flagged_active` | No | Flagged |
-| `cf_development_value` / `cf_development_active` | No | Development |
-| `cf_vulnerability_value` / `cf_vulnerability_active` | No | Vulnerability |
-| `cf_design_value` / `cf_design_active` | No | Design |
-| `cf_story_points_value` / `cf_story_points_active` | No | Story point estimate |
-| `cf_rank_value` / `cf_rank_active` | No | Rank |
-| `cf_linked_issues_value` / `cf_linked_issues_active` | No | Linked Issues |
-| `cf_due_date_value` / `cf_due_date_active` | No | Due Date (e.g. `${finding.resolutionDueDate}`) |
+| `group` | No | ArmorCode group IDs, comma-separated (defaults to 'All') |
+| `subGroup` | No | ArmorCode sub-group IDs, comma-separated (defaults to 'All') |
+| `cf_parent_value` | No | Parent — non-blank value sets `active=true`, blank sets `active=false` |
+| `cf_sprint_value` | No | Sprint |
+| `cf_flagged_value` | No | Flagged |
+| `cf_development_value` | No | Development |
+| `cf_vulnerability_value` | No | Vulnerability |
+| `cf_design_value` | No | Design |
+| `cf_story_points_value` | No | Story point estimate |
+| `cf_rank_value` | No | Rank |
+| `cf_linked_issues_value` | No | Linked Issues |
+| `cf_due_date_value` | No | Due Date (e.g. `${finding.resolutionDueDate}`) |
 | `customFields` | No | JSON array of raw custom field objects for fields not listed above |
 
 ### 2. Run
@@ -105,7 +105,7 @@ Mapping defaults (applied when CSV column is blank):
 
 ## Dry-run
 
-Always do a dry-run first to validate your CSV before hitting the API:
+Best practice: do a dry-run or a small sample set to validate your CSV before creating a large number of mappings:
 
 ```bash
 python3 add_jira_mappings.py --dry-run --integration-name "My Jira Integration" --mappings-csv mappings.csv
