@@ -1,0 +1,14 @@
+Command used to run the test:
+
+python3 add_jira_mappings.py \
+  --integration-name "jira-yn-test" \
+  --mappings-csv test1/mappings.csv \
+  --progress-file test1/progress.json
+
+Notes:
+  - Run from the jira_mapping_add/ directory
+  - Login config ID 47553 = "jira-yn-test" (https://yownhealth.atlassian.net)
+  - Tenant: https://app.armorcode.com/#/u/877/4044/
+  - Mappings created:
+      id=529185  ENG / Bug  (issueTypeId=10011)
+      id=529186  ENG / Task (issueTypeId=10010)
