@@ -1,6 +1,6 @@
-projectKey,issueType,group,subGroup,cf_parent_value,cf_parent_active,cf_sprint_value,cf_sprint_active,cf_flagged_value,cf_flagged_active,cf_development_value,cf_development_active,cf_vulnerability_value,cf_vulnerability_active,cf_design_value,cf_design_active,cf_story_points_value,cf_story_points_active,cf_rank_value,cf_rank_active,cf_linked_issues_value,cf_linked_issues_active,cf_due_date_value,cf_due_date_active
-PROJ,Bug,,,,,,,,,,,,,,,,,,,,,,
-SEC,Story,,,,,,,,,,,,,,,,,,,,,,
-INFRA,Task,,,,,,,,,,,,,,,,,,,,,,
-ENG,Bug,,,,,,,,,,,,,,,,,,,,,${finding.resolutionDueDate},true
-ENG,Task,,,,,,,,,,,,,,,,,,,,,${finding.resolutionDueDate},true
+projectKey,issueType,group,subGroup,cf_parent_value,cf_sprint_value,cf_flagged_value,cf_development_value,cf_vulnerability_value,cf_design_value,cf_story_points_value,cf_rank_value,cf_linked_issues_value,cf_due_date_value
+PROJ,Bug,,,,,,,,,,,,
+SEC,Story,,,,,,,,,,,,
+INFRA,Task,,,,,,,,,,,,
+ENG,Bug,,,,,,,,,,,,${finding.resolutionDueDate}
+ENG,Task,,,,,,,,,,,,${finding.resolutionDueDate}
