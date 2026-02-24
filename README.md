@@ -40,8 +40,6 @@ Each row is one Jira mapping. The only **required** columns are `projectKey` and
 | `projectId` | No | Jira numeric project ID |
 | `issueType` | **Yes** | e.g. `Bug`, `Story`, `Task` |
 | `issueTypeId` | No | Jira numeric issue type ID |
-| `product` | No | ArmorCode product IDs, comma-separated |
-| `subProduct` | No | ArmorCode sub-product IDs, comma-separated |
 | `group` | No | ArmorCode group IDs, comma-separated (defaults to 'All') |
 | `subGroup` | No | ArmorCode sub-group IDs, comma-separated (defaults to 'All') |
 | `cf_parent_value` | No | Parent — non-blank value sets `active=true`, blank sets `active=false` |
